@@ -64,6 +64,7 @@ public class GildedRoseTest {
         assertEquals(item.quality, 9);
         assertEquals(item.sellIn, 4);
     }
+
     @Test
     public void aged_brie_increases_quality_by_1_dup() {
         Item item = agedBrie(1, 8);
