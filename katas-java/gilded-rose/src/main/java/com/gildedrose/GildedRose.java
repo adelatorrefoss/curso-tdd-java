@@ -46,6 +46,7 @@ class GildedRose {
                 }
             }
         }
+
         if (isBackstage(item)) {
             if (item.quality < 50) {
                 item.quality = item.quality + 1;
