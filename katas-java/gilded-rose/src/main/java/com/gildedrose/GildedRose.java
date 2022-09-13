@@ -22,6 +22,15 @@ class GildedRose {
             if (item.quality > 0) {
                 item.quality = item.quality - 1;
             }
+
+            item.sellIn = item.sellIn - 1;
+
+            if (item.sellIn < 0) {
+
+                if (item.quality > 0) {
+                    item.quality = item.quality - 1;
+                }
+            }
         }
 
         if (isAgedBrie(item)) {
@@ -42,6 +51,7 @@ class GildedRose {
                     }
                 }
             }
+            item.sellIn = item.sellIn - 1;
         }
         if (isBackstage(item)) {
             if (item.quality < 50) {
@@ -61,11 +71,12 @@ class GildedRose {
                     }
                 }
             }
+            item.sellIn = item.sellIn - 1;
         }
 
 
         if (!isSulfuras(item)) {
-            item.sellIn = item.sellIn - 1;
+//            item.sellIn = item.sellIn - 1;
         }
 
 
@@ -73,12 +84,7 @@ class GildedRose {
             if (!isBackstage(item)) {
                 if (!isSulfuras(item)) {
 
-                    if (item.sellIn < 0) {
 
-                        if (item.quality > 0) {
-                            item.quality = item.quality - 1;
-                        }
-                    }
                 }
             }
 
