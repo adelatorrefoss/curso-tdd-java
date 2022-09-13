@@ -34,13 +34,13 @@ public class GildedRoseTest {
 
     @Test
     public void regular_items_quality_never_decreases_below_the_minimum_quality() {
-        Item item = regularItem(5, 0);
+        Item item = regularItem(1, 0);
         GildedRose shop = new GildedRose(new Item[]{item});
 
         shop.updateQuality();
 
         assertEquals(item.quality, MIN_QUALITY);
-        assertEquals(item.sellIn, 4);
+        assertEquals(item.sellIn, 0);
     }
 
     @Test
