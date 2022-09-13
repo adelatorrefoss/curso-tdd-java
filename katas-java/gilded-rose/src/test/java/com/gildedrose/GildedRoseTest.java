@@ -218,6 +218,4 @@ public class GildedRoseTest {
     public Item backstagePasses(int sellIn, int quality) {
         return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
     }
-
-
 }
