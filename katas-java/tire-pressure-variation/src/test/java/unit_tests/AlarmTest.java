@@ -1,15 +1,34 @@
 package unit_tests;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
 import org.junit.jupiter.api.Test;
+import tirepressuremonitoringsystem.Alarm;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class AlarmTest {
 
+    class AlarmSpy extends Alarm {
+        private String msg;
+        private double psi;
+
+        @Override
+        protected void sendMessage(String msg) {
+            this.msg = msg;
+        }
+
+        @Override
+        protected double getPsiPressureValue() {
+            return this.psi;
+        }
+    }
+
     @Test
-    public void fix_me_and_rename_ne() {
-        assertThat(true, is(false));
+    public void alarm_activated() {
+        AlarmSpy alarmSpy = new AlarmSpy();
+        alarmSpy.check();
+        alarmSpy.psi = 16.;
+        assertEquals("Alarm activated!", alarmSpy.msg);
     }
 }
 

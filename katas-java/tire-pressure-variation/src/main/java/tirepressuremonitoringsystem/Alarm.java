@@ -7,21 +7,41 @@ public class Alarm {
     private Sensor sensor = new Sensor();
 
     private boolean alarmOn = false;
+    private PressureSensor pressureSensor;
+    private Notifier notifier;
+
+    public Alarm() {
+
+    }
+
+    public Alarm(PressureSensor pressureSensor, Notifier notifier) {
+
+        this.pressureSensor = pressureSensor;
+        this.notifier = notifier;
+    }
 
     public void check() {
-        double psiPressureValue = sensor.popNextPressurePsiValue();
+        double psiPressureValue = getPsiPressureValue();
 
         if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue) {
             if(!isAlarmOn()) {
                 alarmOn = true;
-                System.out.println("Alarm activated!");
+                sendMessage("Alarm activated!");
             }
         } else {
             if(isAlarmOn()) {
                 alarmOn = false;
-                System.out.println("Alarm deactivated!");
+                sendMessage("Alarm deactivated!");
             }
         }
+    }
+
+    protected void sendMessage(String msg) {
+        notifier.extracted(msg);
+    }
+
+    protected double getPsiPressureValue() {
+        return sensor.popNextPressurePsiValue();
     }
 
     private boolean isAlarmOn() {
